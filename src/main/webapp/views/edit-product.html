@@ -9,24 +9,25 @@
     <div class="row">
         <div class="col-lg-6">
             <h1 class="text-center text-danger"><span th:text="#{edit}"></span></h1>
-             <form th:action="@{/update}" method="post" th:object="${category}">
-                <input type="hidden"  class="form-control" th:field="*{id}">
+            <form action="/update-product" method="post" th:object="${product}">
                 <div class="form-group">
-                    <label for="name"><span th:text="#{categoryName}"></span></label>
-                    <input type="text"  id="name" class="form-control" th:field="*{name}"/>
+                    <label for="name"><span th:text="#{ProductName}"></span></label>
+                    <input type="text" class="form-control" th:field="*{name}" id="name" />
                 </div>
                 <div class="form-group">
-                    <label><span th:text="#{action}"></span></label>
-                    <div class="radio">
-                        <label>
-                            <input type="radio" th:field="*{status}" value="true" checked="checked" name="status"> Hiện
-                        </label>
-                        <label>
-                            <input type="radio" th:field="*{status}" value="false" name="status"> Ẩn
-                        </label>
-                    </div>
+                    <label for="price"><span th:text="#{Price}"></span> </label>
+                    <input type="text" class="form-control" th:field="*{price}" id="price" />
                 </div>
-
+                <div class="form-group">
+                    <label for="description"><span th:text="#{description}"></span> </label>
+                    <input type="text" class="form-control" th:field="*{description}" id="description"/>
+                </div>
+                <div class="form-group">
+                    <label for="category"> <span th:text="#{categoryName}"></span></label>
+                    <select class="form-control" name="category" id="category" th:field="*{category.id}">
+                        <option th:each="c:${categoryList}" th:value="${c.id}" th:text="${c.name}"></option>
+                    </select>
+                </div>
                 <button  type="submit" class="btn btn-primary"><span th:text="#{update}"></span></button>
             </form>
         </div>
